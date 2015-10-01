@@ -1,0 +1,49 @@
+<?php
+/**
+ * Dc_Decidir
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category   Dc
+ * @package    Dc_Decidir
+ * @copyright  Copyright (c) 2015 Damián Culotta. (http://www.damianculotta.com.ar/)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<?php $_code = $this->getMethodCode() ?>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
+    <li>
+        <div class="<?php echo $_code; ?>-instructions-content">
+            <?php echo nl2br($this->getDescription()); ?>
+        </div>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_cc_type" class="required"><em>*</em><?php echo $this->__('Credit Card') ?></label>
+        <div class="input-box">
+            <select id="<?php echo $_code ?>_cc_type" name="payment[cc_type]" title="<?php echo $this->__('Credit Card') ?>" class="required-entry">
+                <option value=""><?php echo $this->__('--Please Select--') ?></option>
+                <?php $_cc_type = $this->getInfoData('cc_type') ?>
+                <?php foreach ($this->getCreditCards() as $_credit_card): ?>
+                    <option value="<?php echo $_credit_card['code']; ?>"<?php if ($_credit_card['code'] == $_cc_type): ?> selected="selected"<?php endif ?>><?php echo $_credit_card['name'] ?></option>
+                <?php endforeach ?>
+            </select>
+        </div>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_cc_installment" class="required"><em>*</em><?php echo $this->__('Installments'); ?></label>
+        <div class="input-box">
+            <select id="<?php echo $_code ?>_cc_installment" name="payment[additional_data]" title="<?php echo $this->__('Installment'); ?>" class="required-entry">
+                <option value=""><?php echo $this->__('--Please Select--') ?></option>
+                <?php $_cc_installments = $this->getInfoData('additional_data') ?>
+                <?php foreach ($this->getInstallments() as $_installment): ?>
+                    <option value="<?php echo $_installment; ?>"<?php if ($_installment == $_cc_installments): ?> selected="selected"<?php endif; ?>><?php echo $_installment ?></option>
+                <?php endforeach ?>
+            </select>
+        </div>
+    </li>
+</ul>
+
