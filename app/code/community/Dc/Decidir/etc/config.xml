@@ -18,7 +18,7 @@
 <config>
     <modules>
         <Dc_Decidir>
-            <version>1.0.0</version>
+            <version>0.1.0</version>
         </Dc_Decidir>
     </modules>
     <frontend>
@@ -31,6 +31,13 @@
                 </args>
             </decidir>
         </routers>
+        <layout>
+            <updates>
+                <decidir>
+                    <file>dc/decidir.xml</file>
+                </decidir>
+            </updates>
+        </layout>
     </frontend>
     <adminhtml>
 		<translate>
@@ -84,11 +91,12 @@
         <payment>
             <decidir>
                 <active>0</active>
+                <title>Decidir</title>
                 <model>decidir/decidir</model>
                 <order_status>pending</order_status>
-                <title>Decidir</title>
-                <allowspecific>0</allowspecific>
                 <payment_action>sale</payment_action>
+                <allowspecific>0</allowspecific>
+                <installments>1</installments>
             </decidir>
         </payment>
     </default>

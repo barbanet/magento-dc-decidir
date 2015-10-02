@@ -24,25 +24,41 @@
     <li>
         <label for="<?php echo $_code ?>_cc_type" class="required"><em>*</em><?php echo $this->__('Credit Card') ?></label>
         <div class="input-box">
-            <select id="<?php echo $_code ?>_cc_type" name="payment[cc_type]" title="<?php echo $this->__('Credit Card') ?>" class="required-entry">
-                <option value=""><?php echo $this->__('--Please Select--') ?></option>
-                <?php $_cc_type = $this->getInfoData('cc_type') ?>
-                <?php foreach ($this->getCreditCards() as $_credit_card): ?>
-                    <option value="<?php echo $_credit_card['code']; ?>"<?php if ($_credit_card['code'] == $_cc_type): ?> selected="selected"<?php endif ?>><?php echo $_credit_card['name'] ?></option>
-                <?php endforeach ?>
-            </select>
+            <?php $_credit_cards = $this->getCreditCards(); ?>
+            <?php if (count($_credit_cards) > 1) : ?>
+                <select id="<?php echo $_code ?>_cc_type" name="payment[cc_type]" title="<?php echo $this->__('Credit Card') ?>" class="required-entry">
+                    <option value=""><?php echo $this->__('--Please Select--') ?></option>
+                    <?php $_cc_type = $this->getInfoData('cc_type') ?>
+                    <?php foreach ($_credit_cards as $_credit_card): ?>
+                        <option value="<?php echo $_credit_card['code']; ?>"<?php if ($_credit_card['code'] == $_cc_type): ?> selected="selected"<?php endif ?>><?php echo $_credit_card['name']; ?></option>
+                    <?php endforeach ?>
+                </select>
+            <?php else: ?>
+                <?php foreach ($_credit_cards as $_credit_card): ?>
+                    <input type="hidden" id="<?php echo $_code ?>_cc_type" name="payment[cc_type]" value="<?php echo $_credit_card['code']; ?>" />
+                    <p><?php echo $_credit_card['name']; ?></p>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </li>
     <li>
         <label for="<?php echo $_code ?>_cc_installment" class="required"><em>*</em><?php echo $this->__('Installments'); ?></label>
         <div class="input-box">
-            <select id="<?php echo $_code ?>_cc_installment" name="payment[additional_data]" title="<?php echo $this->__('Installment'); ?>" class="required-entry">
-                <option value=""><?php echo $this->__('--Please Select--') ?></option>
-                <?php $_cc_installments = $this->getInfoData('additional_data') ?>
-                <?php foreach ($this->getInstallments() as $_installment): ?>
-                    <option value="<?php echo $_installment; ?>"<?php if ($_installment == $_cc_installments): ?> selected="selected"<?php endif; ?>><?php echo $_installment ?></option>
-                <?php endforeach ?>
-            </select>
+            <?php $_installments = $this->getInstallments(); ?>
+            <?php if (count($_installments) > 1) : ?>
+                <select id="<?php echo $_code ?>_cc_installment" name="payment[additional_data]" title="<?php echo $this->__('Installment'); ?>" class="required-entry">
+                    <option value=""><?php echo $this->__('--Please Select--') ?></option>
+                    <?php $_cc_installments = $this->getInfoData('additional_data') ?>
+                    <?php foreach ($_installments as $_installment): ?>
+                        <option value="<?php echo $_installment; ?>"<?php if ($_installment == $_cc_installments): ?> selected="selected"<?php endif; ?>><?php echo $_installment ?></option>
+                    <?php endforeach ?>
+                </select>
+            <?php else: ?>
+                <?php foreach ($_installments as $_installment): ?>
+                    <input type="hidden" id="<?php echo $_code ?>_cc_installment" name="payment[additional_data]" value="<?php echo $_installment; ?>" />
+                    <p><?php echo $_installment; ?></p>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </li>
 </ul>

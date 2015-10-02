@@ -40,7 +40,7 @@ class Dc_Decidir_Block_Form_Decidir extends Mage_Payment_Block_Form
      */
     public function getInstallments()
     {
-        return Mage::getModel('decidir/decidir_installments')->getInstallments();
+        return Mage::getModel('decidir/decidir_installments')->getAvailableInstallments();
     }
 
     public function getDescription()
