@@ -30,10 +30,12 @@ class Dc_Decidir_PaymentController extends Mage_Core_Controller_Front_Action
         if ($this->getRequest()->get('resultado') === 'APROBADA') {
             $order_id = Mage::getSingleton('checkout/session')->getLastOrderId();
             $order = Mage::getModel('sales/order')->load($order_id);
-            $message = Mage::helper('decidir')->__('Payment approved by Decidir.com.');
-            $order->addStatusToHistory(Mage::app()->getStore()->getConfig('payment/decidir/order_status'), $message, true);
-            $order->sendOrderUpdateEmail(true, $message);
-            $order->save();
+            if ($order->getId()) {
+                $message = Mage::helper('decidir')->__('Payment approved by Decidir.com.');
+                $order->addStatusToHistory(Mage::app()->getStore()->getConfig('payment/decidir/order_status'), $message, false);
+                $order->sendNewOrderEmail();
+                $order->save();
+            }
             Mage::getSingleton('checkout/session')->unsQuoteId();
             $this->_redirect('checkout/onepage/success');
             return;

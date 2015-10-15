@@ -52,6 +52,10 @@ class Dc_Decidir_Model_Decidir extends Mage_Payment_Model_Method_Abstract
         $id_transaction .= '|NROOPERACION:' . $order->getIncrementId();
         $id_transaction .= '|CUOTAS:' . str_pad($order->getPayment()->getAdditionalData(), 2, "0", STR_PAD_LEFT);
         $id_transaction .= '|CLAVE:' . $this->getMerchantPassword();
+        $id_transaction .= '|';
+
+        Mage::helper('decidir')->log($id_transaction);
+        Mage::helper('decidir')->log(sha1($id_transaction));
 
         $data = array(
             'NROCOMERCIO'   => $this->getMerchantId(),
@@ -60,8 +64,11 @@ class Dc_Decidir_Model_Decidir extends Mage_Payment_Model_Method_Abstract
             'CUOTAS'        => str_pad($order->getPayment()->getAdditionalData(), 2, "0", STR_PAD_LEFT),
             'MEDIODEPAGO'   => $order->getPayment()->getCcType(),
             'URLDINAMICA'   => Mage::getBaseUrl() . 'decidir/payment/response',
+            'EMAILCLIENTE'  => $order->getCustomerEmail(),
             'IDTRANSACCION' => sha1($id_transaction)
         );
+
+        Mage::helper('decidir')->log($data);
 
         return $data;
     }
