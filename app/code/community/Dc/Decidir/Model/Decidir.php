@@ -19,6 +19,8 @@ class Dc_Decidir_Model_Decidir extends Mage_Payment_Model_Method_Abstract
 
     protected $_code  = 'decidir';
 
+    protected $_canUseInternal = false;
+
     protected $_formBlockType = 'decidir/form_decidir';
 
     protected $_infoBlockType = 'decidir/info_decidir';
