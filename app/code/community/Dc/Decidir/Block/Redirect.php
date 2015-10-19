@@ -29,6 +29,8 @@ class Dc_Decidir_Block_Redirect extends Mage_Core_Block_Abstract
         $decidir = Mage::getModel('decidir/decidir');
         foreach ($decidir->getCheckoutFormFields() as $field => $value) {
             $form->addField($field, 'hidden', array('name' => $field, 'value' => $value));
+            Mage::helper('decidir')->log('Form Field: ' . $field);
+            Mage::helper('decidir')->log('Form Value: ' . $value);
         }
 				
         $html = $this->__('You will be redirected to Decidir.com');
