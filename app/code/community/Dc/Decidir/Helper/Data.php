@@ -25,4 +25,14 @@ class Dc_Decidir_Helper_Data extends Mage_Core_Helper_Data
         return 'https://sps.decidir.com/sps-ar/Validar';
     }
 
+    /**
+     * @param $message
+     */
+    public function log($message)
+    {
+        if (Mage::app()->getStore()->getConfig('payment/decidir/debug_log')) {
+            Mage::log($message, null, 'decidir-' . date('Y-m-d') . '.log', true);
+        }
+    }
+
 }
