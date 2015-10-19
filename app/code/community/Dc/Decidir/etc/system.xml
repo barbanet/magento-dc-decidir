@@ -108,6 +108,15 @@
                                 <test_mode>1</test_mode>
                             </depends>
                         </merchant_password_test>
+                        <debug_log translate="label">
+                            <label>Debug Log</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>9</sort_order>
+                        </debug_log>
                         <allowed_credit_cards translate="label">
                             <label>Allowed Credit Cards</label>
                             <frontend_type>multiselect</frontend_type>
@@ -115,7 +124,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
-                            <sort_order>9</sort_order>
+                            <sort_order>10</sort_order>
                         </allowed_credit_cards>
                         <installments translate="label">
                             <label>Installments</label>
@@ -124,7 +133,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
-                            <sort_order>10</sort_order>
+                            <sort_order>11</sort_order>
                         </installments>
                         <order_status translate="label">
                             <label>New order status</label>
@@ -133,7 +142,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
-                            <sort_order>11</sort_order>
+                            <sort_order>12</sort_order>
                         </order_status>
                         <allowspecific translate="label">
                             <label>Payment from applicable countries</label>
@@ -142,7 +151,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
-                            <sort_order>12</sort_order>
+                            <sort_order>13</sort_order>
                         </allowspecific>
                         <specificcountry translate="label">
                             <label>Payment from Specific countries</label>
@@ -151,7 +160,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
-                            <sort_order>13</sort_order>
+                            <sort_order>14</sort_order>
                         </specificcountry>
                     </fields>
                 </decidir>
