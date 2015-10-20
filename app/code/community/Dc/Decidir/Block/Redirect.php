@@ -32,10 +32,10 @@ class Dc_Decidir_Block_Redirect extends Mage_Core_Block_Abstract
             Mage::helper('decidir')->log('Form Field: ' . $field);
             Mage::helper('decidir')->log('Form Value: ' . $value);
         }
-				
+
         $html = $this->__('You will be redirected to Decidir.com');
         $html.= $form->toHtml();
-		$html.= '<script type="text/javascript">document.getElementById("decidir_checkout").submit();</script>';
+        $html.= '<script type="text/javascript">document.getElementById("decidir_checkout").submit();</script>';
 
         return $html;
     }

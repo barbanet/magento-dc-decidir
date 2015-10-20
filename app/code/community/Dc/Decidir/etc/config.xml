@@ -18,7 +18,7 @@
 <config>
     <modules>
         <Dc_Decidir>
-            <version>1.0.0</version>
+            <version>0.2.0</version>
         </Dc_Decidir>
     </modules>
     <frontend>
@@ -40,7 +40,7 @@
         </layout>
     </frontend>
     <adminhtml>
-		<translate>
+        <translate>
             <modules>
                 <Dc_Decidir>
                     <files>
@@ -50,7 +50,7 @@
             </modules>
         </translate>
     </adminhtml> 
-	<global>
+    <global>
         <blocks>
             <decidir>
                 <class>Dc_Decidir_Block</class>
