@@ -23,26 +23,41 @@ class Dc_Decidir_PaymentController extends Mage_Core_Controller_Front_Action
         $block = $this->getLayout()->createBlock('Dc_Decidir_Block_Redirect');
         $this->getLayout()->getBlock('content')->append($block);
         $this->renderLayout();
+        Mage::getSingleton('checkout/session')->unsQuoteId();
     }
 
     public function responseAction()
     {
-        if ($this->getRequest()->get('resultado') === 'APROBADA') {
-            $order_id = Mage::getSingleton('checkout/session')->getLastOrderId();
-            $order = Mage::getModel('sales/order')->load($order_id);
+        $this->_redirect('checkout/onepage/success');
+        return;
+    }
+
+    public function ipnAction()
+    {
+        $data = $this->getRequest();
+        Mage::helper('decidir')->log($data);
+
+        $result = $data->getParam('resultado');
+        $order_id = $data->getParam('noperacion');
+
+        Mage::helper('decidir')->log('RESULTADO: ' . $result);
+        Mage::helper('decidir')->log('NUMERO OPERACION: ' . $order_id);
+
+        $order = Mage::getModel('sales/order')->loadByIncrementId($order_id);
+        if ($result === 'APROBADA' && $order->getId()) {
+            $message = Mage::helper('decidir')->__('Payment APPROVED by Decidir.com.');
+            $order->addStatusToHistory(Mage::app()->getStore()->getConfig('payment/decidir/order_success_status'), $message, false);
+            $order->sendNewOrderEmail();
+            $order->save();
+        } else {
             if ($order->getId()) {
-                $message = Mage::helper('decidir')->__('Payment approved by Decidir.com.');
-                $order->addStatusToHistory(Mage::app()->getStore()->getConfig('payment/decidir/order_status'), $message, false);
+                $message = Mage::helper('decidir')->__('Payment DISAPPROVED by Decidir.com.');
+                $order->addStatusToHistory(Mage::app()->getStore()->getConfig('payment/decidir/order_failure_status'), $message, false);
                 $order->sendNewOrderEmail();
                 $order->save();
             }
-            Mage::getSingleton('checkout/session')->unsQuoteId();
-            $this->_redirect('checkout/onepage/success');
-            return;
-        } else {
-            $this->_redirect('checkout/onepage/failure');
-            return;
         }
+        return;
     }
 
 }

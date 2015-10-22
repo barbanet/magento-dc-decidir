@@ -135,15 +135,24 @@
                             <show_in_store>0</show_in_store>
                             <sort_order>11</sort_order>
                         </installments>
-                        <order_status translate="label" module="decidir">
-                            <label>New order status</label>
+                        <order_success_status translate="label" module="decidir">
+                            <label>New order status on Success</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_order_status</source_model>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
                             <sort_order>12</sort_order>
-                        </order_status>
+                        </order_success_status>
+                        <order_failure_status translate="label" module="decidir">
+                            <label>New order status on Failure</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>13</sort_order>
+                        </order_failure_status>
                         <allowspecific translate="label" module="decidir">
                             <label>Payment from applicable countries</label>
                             <frontend_type>allowspecific</frontend_type>
@@ -151,7 +160,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
-                            <sort_order>13</sort_order>
+                            <sort_order>14</sort_order>
                         </allowspecific>
                         <specificcountry translate="label" module="decidir">
                             <label>Payment from Specific countries</label>
@@ -160,7 +169,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
-                            <sort_order>14</sort_order>
+                            <sort_order>15</sort_order>
                         </specificcountry>
                     </fields>
                 </decidir>

@@ -65,7 +65,7 @@ class Dc_Decidir_Model_Decidir extends Mage_Payment_Model_Method_Abstract
             'MONTO'         => ($order->getBaseTotalDue() * 100),
             'CUOTAS'        => str_pad($order->getPayment()->getAdditionalData(), 2, "0", STR_PAD_LEFT),
             'MEDIODEPAGO'   => $order->getPayment()->getCcType(),
-            'URLDINAMICA'   => Mage::getBaseUrl() . 'decidir/payment/response',
+            'URLDINAMICA'   => Mage::getBaseUrl() . 'decidir/payment/ipn',
             'EMAILCLIENTE'  => $order->getCustomerEmail(),
             'IDTRANSACCION' => sha1($id_transaction)
         );
